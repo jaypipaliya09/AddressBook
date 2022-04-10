@@ -8,32 +8,7 @@
     <link href="../Content/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="../Content/css/bootstrap.min.css" rel="stylesheet" />
     <script src="../Content/js/bootstrap.min.js"></script>
-    <style>
-        table {
-            border-collapse: separate;
-            border: 3px solid black;
-            border-spacing: 10px;
-            box-shadow: 5px 10px rgb(219, 219, 219);
-            border-radius: 4px 4px;
-        }
-
-        tr :nth-child(2n+1) {
-            background-color: #f2f2f2;
-        }
-
-        #content
-        {
-            box-shadow: 5px 10px rgb(219, 219, 219);
-            border-radius: 4px 4px;
-        }
-
-        p
-        {
-            font-family:Bahnschrift;
-            font-weight:bold;
-            font-size:medium;
-        }
-    </style>
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -137,7 +112,7 @@
             </div>
             <div class="row">
                 <hr />
-                <div class="col-md-12" id="content">
+                <div class="col-md-12" id="divContent">
                     <h1>What is Turn Over Rate ?</h1>
                 </div>
                 <div class="col-md-12">
@@ -147,7 +122,7 @@
             </div>
             <div class="row">
                 <hr />
-                <div class="col-md-12" id="content">
+                <div class="col-md-12" id="divContent">
                     <h1>Why to Calculate Turn Over Rate ?</h1>
                 </div>
                 <div class="col-md-12">
