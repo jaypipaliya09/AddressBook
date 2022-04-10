@@ -1,0 +1,59 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AddressBook.master.cs" Inherits="Content_AddressBook" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Address Book</title>
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder id="cphHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="container">
+        <div class="row navbar">
+            <div class="col-md-4">
+                <br />
+                <asp:Image runat="server" Id="imgDarshanLogo" ToolTip="Darshan Institute of Engineering and Technology"  AlternateText="DIET Image" SkinID="DIETLogo" /><h2>ADDRESS BOOK</h2>
+            </div>
+            <div class="col-md-8" align="right">
+                <br />
+                <br />
+                <asp:HyperLink runat="server" ID="hlCountry" Text="Country" ToolTip="Country -- AdminPannel" NavigateUrl="~/AdminPanel/Country/CountryList.aspx"></asp:HyperLink>&nbsp;&nbsp;|
+                <asp:HyperLink runat="server" ID="hlState" Text="State" ToolTip="State -- AdminPannel" NavigateUrl="~/AdminPanel/State/StateList.aspx"></asp:HyperLink>&nbsp;&nbsp;|
+                <asp:HyperLink runat="server" ID="hlContactCategory" Text="ContactCategory" ToolTip="Contact-Category -- AdminPannel" NavigateUrl="~/AdminPanel/ContactCategory/ContactCategoryList.aspx"></asp:HyperLink>&nbsp;&nbsp;|
+                <asp:HyperLink runat="server" ID="hlContact" Text="Contact" ToolTip="Contact -- AdminPannel" NavigateUrl="~/AdminPanel/Contact/ContactList.aspx"></asp:HyperLink>&nbsp;&nbsp;|
+                <asp:HyperLink runat="server" ID="hlCity" Text="City" ToolTip="City -- AdminPannel" NavigateUrl="~/AdminPanel/City/CityList.aspx"></asp:HyperLink>&nbsp;&nbsp;|
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <asp:ContentPlaceHolder id="cphMainContent" runat="server">
+                    
+                </asp:ContentPlaceHolder>
+                <br />
+                <br />
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="row footer">
+                <div class="col-md-12" align="center">
+                    <h3>ADDRESS BOOK</h3>
+                    <br />
+                    <hr />
+                </div>
+                <div class="col-md-12" align="center">
+                    <h3>Jay Pipaliya | 190540107170 | 190540107170@darshan.ac.in</h3>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    </form>
+</body>
+</html>

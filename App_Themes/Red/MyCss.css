@@ -1,0 +1,37 @@
+﻿body {
+    font-family: Verdana;
+}
+
+.navbar A {
+    font-weight: bolder;
+    color: darkcyan;
+    text-decoration: none;
+}
+
+    .navbar A:hover {
+        color: red;
+    }
+
+.footer {
+    background-color: slategrey;
+}
+
+    .footer A {
+        color: White;
+    }
+
+        .footer A:hover {
+            color: blue;
+            text-decoration: none;
+        }
+
+h3 {
+    color: aliceblue;
+    text-shadow: 2px 2px 5px;
+}
+
+h2 {
+    text-shadow: 2px 2px 5px;
+}
+
+
