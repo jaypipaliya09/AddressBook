@@ -24,7 +24,7 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
     protected void btnCalculate_Click(object sender, EventArgs e)
     {
         OvertimePay();
-
+        
     }
 
     #endregion Button : Calculate
@@ -120,6 +120,7 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
             totalPay = overtimePay + regularPay;
             lblTotalPay.Text = "Total Pay: " + totalPay + " " + ddlCurrency.SelectedValue.ToString().Trim() + "/" + strPayUnit;
             DisplayCalculation(strUnit, overtimeHours, overtimePay, regularPay, strPayUnit, totalPay);
+            divCalculation.Visible = true;
             ClearControls();
         }
         else
