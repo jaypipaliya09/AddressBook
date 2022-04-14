@@ -10,6 +10,29 @@
     <script src="../Content/js/bootstrap.min.js"></script>
     <script>window.MathJax = { MathML: { extensions: ["mml3.js", "content-mathml.js"] } };</script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=MML_HTMLorMML"></script>
+    <style>
+        table {
+            border-collapse: separate;
+            border: 3px solid black;
+            border-spacing: 10px;
+            box-shadow: 5px 10px rgb(219, 219, 219);
+            border-radius: 4px 4px;
+        }
+
+        tr :nth-child(2n+1) {
+            background-color: #f2f2f2;
+        }
+        #divContent {
+            box-shadow: 5px 10px rgb(219, 219, 219);
+            border-radius: 4px 4px;
+        }
+
+        p {
+            font-family: Bahnschrift;
+            font-weight: bold;
+            font-size: medium;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,9 +49,9 @@
                 </div>
                 <div class="col-md-4">
                     <asp:DropDownList ID="ddlCalculationType" runat="server" AutoPostBack="True" DataTextField="Select Calculation Type" DataValueField="-1" OnSelectedIndexChanged="ddlCalculationType_SelectedIndexChanged">
-                        <asp:ListItem Value="Hour"> Hour </asp:ListItem>
-                        <asp:ListItem Value="Day"> Day </asp:ListItem>
-                        <asp:ListItem Value="Week"> Week </asp:ListItem>
+                        <asp:ListItem Value="hour"> Hour </asp:ListItem>
+                        <asp:ListItem Value="day"> Day </asp:ListItem>
+                        <asp:ListItem Value="week"> Week </asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
@@ -40,9 +63,9 @@
                 <div class="col-md-4">
                     <asp:DropDownList ID="ddlCurrency" runat="server" AutoPostBack="True">
                         <asp:ListItem Value="-1"> Select Currency </asp:ListItem>
-                        <asp:ListItem Value="Rupees"> Rupees (&#8377;)</asp:ListItem>
-                        <asp:ListItem Value="Dollar"> Dollar ($) </asp:ListItem>
-                        <asp:ListItem Value="Pound"> Pound (&pound;)</asp:ListItem>
+                        <asp:ListItem Value="&#8377;"> Rupees (&#8377;)</asp:ListItem>
+                        <asp:ListItem Value="$"> Dollar ($) </asp:ListItem>
+                        <asp:ListItem Value="&pound;"> Pound (&pound;)</asp:ListItem>
                     </asp:DropDownList>
 
                 </div>
@@ -136,7 +159,7 @@
                     <asp:Label runat="server" ID="lblOvertimeHours" CssClass="active" Font-Names="Bahnschrift SemiLight" Font-Size="Medium" ForeColor="Green" Font-Bold="True"></asp:Label>
                 </div>
             </div>
-            <div runat="server" class="row" id="divCalculation" visible="false">
+            <div class="row">
                 <hr />
                 <br />
                 <div class="col-md-12" id="divContent">
@@ -336,10 +359,10 @@
                     <h5>Suresh's regular worktime is 10 hours but he works total 15hours and his regular salary per hour is 5 Rupees/hour, His worktime is more than the regular worktime so his salary is double than regular salary per hour so find Overtime salary per hour. and Total salary per hour</h5>
                     <hr />
                     <p>
-                        <b>Regular WorkTime = 10 hours<br />
+                            Regular WorkTime = 10 hours<br />
                             Total WorkTime = 15 hours<br />
                             Regular Pay per hour = 5 Rupees/hour<br />
-                            Overtime Multiplier = 2x</b>
+                            Overtime Multiplier = 2x
                     </p>
                     <p>
                         Overtime = Total WorkTime - Regular WorkTime
@@ -349,7 +372,7 @@
                     </p>
                     <br />
                     <p>
-                        Overtime Pay Per hour = Overtime Multiplier *  Regular Pay per hour<br />
+                        Overtime Pay Per hour = Overtime Multiplier *  Regular Pay Per hour<br />
                         Overtime Pay Per hour = 2*5<br />
                         Overtime Pay Per hour = 10 Rupees/hour<br />
                     </p>
@@ -366,9 +389,9 @@
                             Regular Pay = 50 Rupees</u>
                     </p>
                     <p>
-                        <b>Total Salary Per day = Regular Pay + Overtime Pay<br />
+                            Total Salary Per day = Regular Pay + Overtime Pay<br />
                             Total Salary Per day = 50 + 50<br />
-                            Total Salary Per day = 100 Rupees/day </b>
+                            Total Salary Per day = 100 Rupees/day
                     </p>
                 </div>
             </div>

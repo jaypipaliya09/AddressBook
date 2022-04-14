@@ -13,7 +13,7 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             SelectDurationMode();
-
+            
         }
 
     }
@@ -24,7 +24,7 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
     protected void btnCalculate_Click(object sender, EventArgs e)
     {
         OvertimePay();
-        
+       
     }
 
     #endregion Button : Calculate
@@ -110,17 +110,16 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
             divAnswer.Visible = true;
             lblMessage.Visible = false;
             regularPay = Convert.ToDouble(txtRegularWorktime.Text.Trim()) * Convert.ToDouble(txtRegularPay.Text.Trim());
-            lblRegularPay.Text = "Regular Pay: " + regularPay.ToString().Trim() + " " + ddlCurrency.SelectedValue.ToString().Trim() + "/" + strPayUnit;
+            lblRegularPay.Text = "Regular Pay: " + regularPay.ToString().Trim() + " " + ddlCurrency.SelectedValue.ToString().Trim()+"/"+strPayUnit;
 
-            lblOvertimeHours.Text = "Overtime " + char.ToUpperInvariant(strUnit[0]).ToString().Trim() + strUnit.Substring(1) + ": " + overtimeHours.ToString().Trim() + " " + strUnit;
-            lblRegularHours.Text = "Regular " + char.ToUpperInvariant(strUnit[0]).ToString().Trim() + strUnit.Substring(1) + ":  " + txtRegularWorktime.Text.Trim() + " " + strUnit;
-
+            lblOvertimeHours.Text = "Overtime " + char.ToUpperInvariant(strUnit[0]).ToString().Trim()+strUnit.Substring(1)+": " + overtimeHours.ToString().Trim() +" "+strUnit;
+            lblRegularHours.Text = "Regular " + char.ToUpperInvariant(strUnit[0]).ToString().Trim()+strUnit.Substring(1)+ ":  " + txtRegularWorktime.Text.Trim() +" "+strUnit;
+            
             overtimePay = Convert.ToDouble(overtimeHours) * Convert.ToDouble(txtMultiplier.Text.Trim()) * Convert.ToDouble(txtRegularPay.Text.Trim());
-            lblOvertimePay.Text = "Overtime Pay: " + overtimePay.ToString().Trim() + " " + ddlCurrency.SelectedValue.ToString().Trim() + "/" + strPayUnit;
+            lblOvertimePay.Text = "Overtime Pay: " + overtimePay.ToString().Trim() + " " + ddlCurrency.SelectedValue.ToString().Trim()+"/"+strPayUnit;
             totalPay = overtimePay + regularPay;
             lblTotalPay.Text = "Total Pay: " + totalPay + " " + ddlCurrency.SelectedValue.ToString().Trim() + "/" + strPayUnit;
             DisplayCalculation(strUnit, overtimeHours, overtimePay, regularPay, strPayUnit, totalPay);
-            divCalculation.Visible = true;
             ClearControls();
         }
         else
@@ -149,10 +148,10 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
         {
             strUnit = "days";
         }
-        lblRegularWorktime.Text = "Regular WorkTime in " + strUnit + ": ";
-        lblTotalWorktime.Text = "Total WorkTime in " + strUnit + ": ";
-        lblRegularPayPer.Text = "Regular Pay Per " + strUnit + ": ";
-        rfvRegularPay.Text = "Enter a Pay Per " + strUnit + ": ";
+        lblRegularWorktime.Text = "Regular WorkTime in "+strUnit+": ";
+        lblTotalWorktime.Text = "Total WorkTime in "+strUnit+": ";
+        lblRegularPayPer.Text = "Regular Pay Per "+strUnit+": ";
+        rfvRegularPay.Text = "Enter a Pay Per "+strUnit+": ";
         lblRegularWorktimeType.Text = strUnit;
         lblTotalWorktimeType.Text = strUnit;
     }
@@ -184,7 +183,7 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
     {
         miCalTotalWorktime.InnerHtml = txtTotalWorktime.Text.Trim();
         miCalRegularWorktime.InnerHtml = txtRegularWorktime.Text.Trim();
-        miCalOvertime.InnerHtml = overtimeHours.ToString().Trim() + " " + char.ToUpperInvariant(strUnit[0]).ToString().Trim() + strUnit.Substring(1);
+        miCalOvertime.InnerHtml = overtimeHours.ToString().Trim()+" "+char.ToUpperInvariant(strUnit[0]).ToString().Trim()+strUnit.Substring(1);
         milblMode.InnerHtml = char.ToUpperInvariant(strPayUnit[0]).ToString().Trim() + strPayUnit.Substring(1);
         miCalOvertimeMultiplier.InnerHtml = txtMultiplier.Text.Trim();
         miCalRegularPay.InnerHtml = regularPay.ToString().Trim();

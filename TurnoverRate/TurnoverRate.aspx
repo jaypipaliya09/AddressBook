@@ -10,7 +10,30 @@
     <script src="../Content/js/bootstrap.min.js"></script>
     <script>window.MathJax = { MathML: { extensions: ["mml3.js", "content-mathml.js"] } };</script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=MML_HTMLorMML"></script>
-    
+    <style>
+        table {
+            border-collapse: separate;
+            border: 3px solid black;
+            border-spacing: 10px;
+            box-shadow: 5px 10px rgb(219, 219, 219);
+            border-radius: 4px 4px;
+        }
+
+        tr :nth-child(2n+1) {
+            background-color: #f2f2f2;
+        }
+
+        #divContent {
+            box-shadow: 5px 10px rgb(219, 219, 219);
+            border-radius: 4px 4px;
+        }
+
+        p {
+            font-family: Bahnschrift;
+            font-weight: bold;
+            font-size: medium;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,8 +50,8 @@
                 </div>
                 <div class="col-md-4">
                     <asp:DropDownList ID="ddlFindAverage" runat="server" AutoPostBack="True" DataTextField="Select Yes or No" DataValueField="-1" OnSelectedIndexChanged="ddlFindAverage_SelectedIndexChanged">
-                        <asp:ListItem Value="Yes">Yes</asp:ListItem>
-                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="yes">Yes</asp:ListItem>
+                        <asp:ListItem Value="no">No</asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
@@ -94,7 +117,6 @@
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-3">
-
                 </div>
                 <div class="col-md-4" align="right">
                     <asp:Button runat="server" ID="btnCalculate" Text="Calculate" CssClass="btn btn-success" OnClick="btnCalculate_Click" ValidationGroup="Calculate" />
@@ -259,7 +281,9 @@
                     </math>
                 </div>
             </div>
+            
             <div class="row">
+                <br />
                 <hr />
                 <div class="col-md-12" id="divContent">
                     <h1>What is Turn Over Rate ?</h1>
@@ -316,9 +340,9 @@
                     <h5>Philip's Industry, during 2009 Number of employees joined this company at the begining and ending with respect to were 500 and 600 and during this year 15 employee left the company. Find the Turn over ratio.</h5>
                     <hr />
                     <p>
-                        <b>Employees at the begining = 500<br />
-                           Employees at the ending = 600<br />
-                           Number of Employees who left = 15<br />
+                            Employees at the begining = 500<br />
+                            Employees at the ending = 600<br />
+                            Number of Employees who left = 15<br />
                     </p>
                     <p>
                         Average Number of Employees = (Employees at the begining + Employees at the ending)/2<br />
@@ -327,11 +351,9 @@
                     </p>
                     <br />
                     <p>
-                        <b>
-                            Turnover Ration = (Number of Employees who left/Average Number of Employees)*100 %<br />
-                            Turnover Ration = (15/500)*100 %<br />
-                            Turnover Ration = 3 %
-                        </b>
+                            Turnover Ratio = (Number of Employees who left/Average Number of Employees)*100 %<br />
+                            Turnover Ratio = (15/500)*100 %<br />
+                            Turnover Ratio = 3 %
                     </p>
                 </div>
             </div>

@@ -10,10 +10,10 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
     #region Load Event
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
+        if(!Page.IsPostBack)
         {
             SelectMode();
-
+            
         }
     }
     #endregion Load Event
@@ -31,7 +31,7 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
     #region Select Mode
     protected void SelectMode()
     {
-
+        
         if (ddlFindAverage.SelectedValue.ToString().Trim() == "yes")
         {
             divEmployeeBegin.Visible = true;
@@ -48,7 +48,7 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
             divMethod1.Visible = false;
             divMethod2.Visible = true;
         }
-
+        
     }
     #endregion Select Duaration Mode
 
@@ -60,18 +60,18 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
     #endregion Button : Calculate
 
     #region Turnover Rate
-
+    
     protected void TurnoverRate()
     {
         #region Local Variable
-        float AverageNumber = 0;
+        float AverageNumber=0;
         float TurnoverRatio = 0;
         #endregion Local Variable
 
         #region Server Side Validation
         String strErrorMessage = "";
-
-        if (ddlFindAverage.SelectedValue.ToString().Trim() == "no")
+  
+        if(ddlFindAverage.SelectedValue.ToString().Trim()=="no")
         {
             if (txtAverageNumber.Text.Trim() == "")
             {
@@ -89,7 +89,7 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
             {
                 strErrorMessage += "- Enter Number of Employee at the ending <br/>";
             }
-
+            
         }
         if (txtEmployeeLeft.Text.Trim() == "")
         {
@@ -98,14 +98,14 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
         if (strErrorMessage.Trim() != "")
         {
             lblMessage.Visible = true;
-            lblMessage.Text = "Kindly solve following Error(s)" + strErrorMessage;
+            lblMessage.Text = "Kindly solve following Error(s)" +  strErrorMessage;
             return;
         }
         #endregion Server Side Validation
 
         #region Calculation
 
-        if (ddlFindAverage.SelectedValue.ToString().Trim() == "yes")
+        if(ddlFindAverage.SelectedValue.ToString().Trim() == "yes")
         {
             AverageNumber = (float.Parse(txtEmployeeBegin.Text.Trim()) + float.Parse(txtEmployeeEnd.Text.Trim())) / 2;
         }
