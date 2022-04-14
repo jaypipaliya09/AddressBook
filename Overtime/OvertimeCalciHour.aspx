@@ -10,29 +10,7 @@
     <script src="../Content/js/bootstrap.min.js"></script>
     <script>window.MathJax = { MathML: { extensions: ["mml3.js", "content-mathml.js"] } };</script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=MML_HTMLorMML"></script>
-    <style>
-        table {
-            border-collapse: separate;
-            border: 3px solid black;
-            border-spacing: 10px;
-            box-shadow: 5px 10px rgb(219, 219, 219);
-            border-radius: 4px 4px;
-        }
-
-        tr :nth-child(2n+1) {
-            background-color: #f2f2f2;
-        }
-        #divContent {
-            box-shadow: 5px 10px rgb(219, 219, 219);
-            border-radius: 4px 4px;
-        }
-
-        p {
-            font-family: Bahnschrift;
-            font-weight: bold;
-            font-size: medium;
-        }
-    </style>
+    
 </head>
 <body>
     <form id="form1" runat="server">
