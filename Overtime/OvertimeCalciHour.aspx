@@ -349,7 +349,7 @@
                     </p>
                     <br />
                     <p>
-                        Overtime Pay Per hour = Overtime Multiplier *  Overtime<br />
+                        Overtime Pay Per hour = Overtime Multiplier *  Regular Pay per hour<br />
                         Overtime Pay Per hour = 2*5<br />
                         Overtime Pay Per hour = 10 Rupees/hour<br />
                     </p>
