@@ -8,6 +8,8 @@
     <link href="../Content/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="../Content/css/bootstrap.min.css" rel="stylesheet" />
     <script src="../Content/js/bootstrap.min.js"></script>
+    <script>window.MathJax = { MathML: { extensions: ["mml3.js", "content-mathml.js"] } };</script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=MML_HTMLorMML"></script>
     
 </head>
 <body>
@@ -108,6 +110,153 @@
                 <br />
                 <div class="col-md-4">
                     <asp:Label runat="server" ID="lblTurnOverRate" CssClass="active" Font-Bold="True" Font-Names="Bahnschrift SemiLight" Font-Size="Medium" ForeColor="Green"></asp:Label>
+                </div>
+            </div>
+            <div class="row" runat="server" id="divMathCalculation" visible="false">
+                <hr />
+                <br />
+                <div class="col-md-12" id="divContent">
+                    <h1>Calculation</h1>
+                </div>
+                <div runat="server" class="col-md-12" id="divMethod1" visible="true">
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <mrow>
+                        <mo>Average Number of Employees = &#xA0;</mo>
+                        <mrow>
+                          <mfrac>
+                            <mrow>
+                              <mo>(Employees at the begining</mo>
+                              <mi>+</mi>
+                              <mo>Employees at the ending)</mo>
+                            </mrow>
+                            <mrow>
+                              <mo>2</mo>
+                            </mrow>
+                          </mfrac>
+                        </mrow>
+                      </mrow>
+                    </math>
+                    <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <mrow>
+                        <mo>Average Number of Employees = &#xA0;</mo>
+                        <mrow>
+                          <mfrac>
+                            <mrow>
+                              <mi>(</mi>
+                              <mi runat="server" id="miCalEmployeebegin"></mi>
+                              <mi>+</mi>
+                              <mi runat="server" id="miCalEmployeeend"></mi>
+                              <mi>)</mi>
+                            </mrow>
+                            <mrow>
+                              <mi>2</mi>
+                            </mrow>
+                          </mfrac>
+                          </mrow>
+                          <mrow>
+                              <mo>&equals;</mo>
+                              <mi runat="server" id="miCalAverage"></mi>
+                          </mrow>
+                      </mrow>
+                    </math>
+                    <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <mrow>
+                        <mo>Turnover Ratio = &#xA0;</mo>
+                        <mrow>
+                          <mfrac>
+                            <mrow>
+                              <mo>Number of Employees who left</mo>
+                            </mrow>
+                            <mrow>
+                              <mo>Average Number of Employee</mo>
+                            </mrow>
+                          </mfrac>
+                          <mrow>
+                              <mi>x 100 %</mi>
+                          </mrow>
+                        </mrow>
+                      </mrow>
+                    </math>
+                    <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <mrow>
+                        <mo>Turnover Ratio = &#xA0;</mo>
+                        <mrow>
+                          <mfrac>
+                            <mrow>
+                              <mi runat="server" id="miCalEmployeeLeft"></mi>
+                            </mrow>
+                            <mrow>
+                              <mi runat="server" id="miDisAverage"></mi>
+                            </mrow>
+                          </mfrac>
+                          <mrow>
+                              <mi>x 100 %</mi>
+                          </mrow>
+                          </mrow>
+                          <mrow>
+                              <mo>&equals;</mo>
+                              <mi runat="server" id="miCalTurnoverRatio"></mi>
+                          </mrow>
+                          <mrow>
+                              <mi>%</mi>
+                          </mrow>
+                      </mrow>
+                    </math>
+                </div>
+                <div runat="server" class="col-md-12" id="divMethod2">
+                     <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <mrow>
+                        <mo>Turnover Ratio = &#xA0;</mo>
+                        <mrow>
+                          <mfrac>
+                            <mrow>
+                              <mo>Number of Employees who left</mo>
+                            </mrow>
+                            <mrow>
+                              <mo>Average Number of Employee</mo>
+                            </mrow>
+                          </mfrac>
+                          <mrow>
+                              <mi>x 100 %</mi>
+                          </mrow>
+                        </mrow>
+                      </mrow>
+                    </math>
+                    <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <mrow>
+                        <mo>Turnover Ratio = &#xA0;</mo>
+                        <mrow>
+                          <mfrac>
+                            <mrow>
+                              <mi runat="server" id="miCalEmployeeLeftMethod2"></mi>
+                            </mrow>
+                            <mrow>
+                              <mi runat="server" id="miDisAverageMethod2"></mi>
+                            </mrow>
+                          </mfrac>
+                          <mrow>
+                              <mi>x 100 %</mi>
+                          </mrow>
+                          </mrow>
+                          <mrow>
+                              <mo>&equals;</mo>
+                              <mi runat="server" id="miCalTurnoverRatioMethod2"></mi>
+                          </mrow>
+                          <mrow>
+                              <mi>%</mi>
+                          </mrow>
+                      </mrow>
+                    </math>
                 </div>
             </div>
             <div class="row">

@@ -8,7 +8,8 @@
     <link href="../Content/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="../Content/css/bootstrap.min.css" rel="stylesheet" />
     <script src="../Content/js/bootstrap.min.js"></script>
-    
+    <script>window.MathJax = { MathML: { extensions: ["mml3.js", "content-mathml.js"] } };</script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=MML_HTMLorMML"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -133,6 +134,173 @@
                 </div>
                 <div class="col-md-4">
                     <asp:Label runat="server" ID="lblOvertimeHours" CssClass="active" Font-Names="Bahnschrift SemiLight" Font-Size="Medium" ForeColor="Green" Font-Bold="True"></asp:Label>
+                </div>
+            </div>
+            <div class="row">
+                <hr />
+                <br />
+                <div class="col-md-12" id="divContent">
+                    <h1>Calculation</h1>
+                </div>
+                <div class="col-md-12">
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <mrow>
+                        <mo>Overtime = &#xA0;</mo>
+                        <mrow>
+                            <mrow>
+                              <mo>Total Worktime</mo>
+                              <mi>&#xA0;-&#xA0;</mi>
+                              <mo>Regular Worktime</mo>
+                            </mrow>
+                        </mrow>
+                      </mrow>
+                    </math>
+                    <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <mrow>
+                        <mo>Overtime = &#xA0;</mo>
+                        <mrow>
+                            <mrow>
+                              <mi runat="server" id="miCalTotalWorktime">&#xA0;</mi>
+                              <mi>&#xA0;-&#xA0;</mi>
+                              <mi runat="server" id="miCalRegularWorktime"></mi>
+                            </mrow>
+                          </mrow>
+                          <mrow>
+                              <mo>&equals;</mo>
+                              <mi runat="server" id="miCalOvertime"></mi>
+                          </mrow>
+                      </mrow>
+                    </math>
+                     <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <mrow>
+                        <mo>Regular Pay</mo>
+                        <mo>&#xA0;=&#xA0;</mo>
+                        <mrow>
+                            <mrow>
+                              <mo>Regular Pay Per</mo>
+                               <mo runat="server" id="milblMode3"></mo>
+                              <mi>&#xA0;x&#xA0;</mi>
+                              <mo>Regular Worktime</mo>
+                            </mrow>
+                        </mrow>
+                      </mrow>
+                    </math>
+                     <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <mrow>
+                        <mo>Regular Pay</mo>
+                        <mo>&#xA0;=&#xA0;</mo>
+                        <mrow>
+                            <mrow>
+                              <mi runat="server" id="milblRegularPayModeWise">&#xA0;</mi>
+                              <mi>&#xA0;x&#xA0;</mi>
+                              <mi runat="server" id="milblRegularWorktime"></mi>
+                            </mrow>
+                          </mrow>
+                          <mrow>
+                              <mo>&equals;</mo>
+                              <mi runat="server" id="miCalRegularPay1"></mi>
+                              <mfrac>
+                                  <mi runat="server" id="milblCurrency2"></mi>
+                                  <mi runat="server" id="milblMode4"></mi>
+                              </mfrac>
+                          </mrow>
+                      </mrow>
+                    </math>
+                    <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <mrow>
+                        <mo>Overtime Pay</mo>
+                        <mo>&#xA0;=&#xA0;</mo>
+                        <mrow>
+                            <mrow>
+                              <mo>Overtime Multiplier</mo>
+                              <mi>&#xA0;x&#xA0;</mi>
+                              <mo>Regular Pay Per </mo>
+                              <mo runat="server" id="milblMode"></mo>
+                            </mrow>
+                        </mrow>
+                      </mrow>
+                    </math>
+                    <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <mrow>
+                        <mo>Overtime Pay</mo>
+                        <mo>&#xA0;=&#xA0;</mo>
+                        <mrow>
+                            <mrow>
+                              <mi runat="server" id="miCalOvertimeMultiplier">&#xA0;</mi>
+                              <mi>&#xA0;x&#xA0;</mi>
+                              <mi runat="server" id="miCalRegularPay"></mi>
+                            </mrow>
+                          </mrow>
+                          <mrow>
+                              <mo>&equals;</mo>
+                              <mi runat="server" id="miCalOvertimePay"></mi>
+                              <mfrac>
+                                  <mi runat="server" id="milblCurrency"></mi>
+                                  <mi runat="server" id="milblMode1"></mi>
+                              </mfrac>
+                          </mrow>
+                      </mrow>
+                    </math>
+                    <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <mrow>
+                        <mo>Total Salary</mo>
+                        <mo>&#xA0;=&#xA0;</mo>
+                        <mrow>
+                            <mrow>
+                              <mo>Regular Pay</mo>
+                              <mi>&#xA0;+&#xA0;</mi>
+                              <mo>Overtime Pay</mo>
+                            </mrow>
+                        </mrow>
+                      </mrow>
+                    </math>
+                     <br />
+                    <br />
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <mrow>
+                        <mo>Total Salary</mo>
+                        <mo>&#xA0;=&#xA0;</mo>
+                        <mrow>
+                            <mrow>
+                              <mi runat="server" id="milblRegularPay">&#xA0;</mi>
+                              <mi>&#xA0;+&#xA0;</mi>
+                              <mi runat="server" id="milblOvertimePay"></mi>
+                            </mrow>
+                          </mrow>
+                          <mrow>
+                              <mo>&equals;</mo>
+                              <mi runat="server" id="miCalTotal"></mi>
+                              <mfrac>
+                                  <mi runat="server" id="milblCurrency1"></mi>
+                                  <mi runat="server" id="milblMode2"></mi>
+                              </mfrac>
+                          </mrow>
+                      </mrow>
+                    </math>
+                </div>
+            </div>
+            <div class="row">
+                <br />
+                <hr />
+                <div class="col-md-12" id="divContent">
+                    <h1>What is Overtime ?</h1>
+                </div>
+                <div class="col-md-12">
+                    <br />
+                    <p align="justify">This overtime calculator is a tool that finds out how much you will earn if you have to stay longer at work. All you have to do is provide some information about your hourly wages, and it will calculate the total pay you will receive this month.</p>
                 </div>
             </div>
             <div class="row">

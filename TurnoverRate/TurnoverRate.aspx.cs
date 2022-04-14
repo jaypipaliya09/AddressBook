@@ -10,10 +10,10 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
     #region Load Event
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!Page.IsPostBack)
+        if (!Page.IsPostBack)
         {
             SelectMode();
-            
+
         }
     }
     #endregion Load Event
@@ -31,21 +31,24 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
     #region Select Mode
     protected void SelectMode()
     {
-        
-        if (ddlFindAverage.SelectedItem.ToString().Trim() == "Yes")
-        {
 
+        if (ddlFindAverage.SelectedValue.ToString().Trim() == "yes")
+        {
             divEmployeeBegin.Visible = true;
             divEmployeeEnd.Visible = true;
             divAverageNumber.Visible = false;
+            divMethod1.Visible = true;
+            divMethod2.Visible = false;
         }
         else
         {
             divAverageNumber.Visible = true;
             divEmployeeBegin.Visible = false;
             divEmployeeEnd.Visible = false;
+            divMethod1.Visible = false;
+            divMethod2.Visible = true;
         }
-        
+
     }
     #endregion Select Duaration Mode
 
@@ -57,17 +60,18 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
     #endregion Button : Calculate
 
     #region Turnover Rate
-    
+
     protected void TurnoverRate()
     {
         #region Local Variable
-        float AverageNumber=0;
+        float AverageNumber = 0;
+        float TurnoverRatio = 0;
         #endregion Local Variable
 
         #region Server Side Validation
         String strErrorMessage = "";
-  
-        if(ddlFindAverage.SelectedItem.ToString().Trim()=="No")
+
+        if (ddlFindAverage.SelectedValue.ToString().Trim() == "no")
         {
             if (txtAverageNumber.Text.Trim() == "")
             {
@@ -85,7 +89,7 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
             {
                 strErrorMessage += "- Enter Number of Employee at the ending <br/>";
             }
-            
+
         }
         if (txtEmployeeLeft.Text.Trim() == "")
         {
@@ -94,25 +98,27 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
         if (strErrorMessage.Trim() != "")
         {
             lblMessage.Visible = true;
-            lblMessage.Text = strErrorMessage;
+            lblMessage.Text = "Kindly solve following Error(s)" + strErrorMessage;
             return;
         }
         #endregion Server Side Validation
 
         #region Calculation
 
-        if(ddlFindAverage.SelectedItem.ToString().Trim() == "Yes")
+        if (ddlFindAverage.SelectedValue.ToString().Trim() == "yes")
         {
-            AverageNumber = (Convert.ToInt32(txtEmployeeBegin.Text.Trim()) + Convert.ToInt32(txtEmployeeEnd.Text.Trim())) / 2;
+            AverageNumber = (float.Parse(txtEmployeeBegin.Text.Trim()) + float.Parse(txtEmployeeEnd.Text.Trim())) / 2;
         }
 
         else
         {
             AverageNumber = float.Parse(txtAverageNumber.Text.Trim());
         }
-
-        lblTurnOverRate.Text = "TurnOver Rate : " + Convert.ToString((Convert.ToInt32(txtEmployeeLeft.Text.Trim()) / AverageNumber) * 100) + "%";
+        TurnoverRatio = (float.Parse(txtEmployeeLeft.Text.Trim()) / AverageNumber) * 100;
+        divMathCalculation.Visible = true;
+        DisplayCalculation(AverageNumber, TurnoverRatio);
         ClearControls();
+        lblTurnOverRate.Text = "TurnOver Rate : " + TurnoverRatio.ToString("0.00").Trim() + "%";
         #endregion Calculation
     }
 
@@ -131,6 +137,23 @@ public partial class TurnoverRate_TurnoverRate : System.Web.UI.Page
     {
         SelectMode();
         ClearAnswer();
+        divMathCalculation.Visible = false;
     }
     #endregion ddlFindAverage_SelectedIndexChanged
+
+    #region Display Calculation
+    protected void DisplayCalculation(float AverageNumber, float TurnoverRatio)
+    {
+        miCalEmployeebegin.InnerHtml = txtEmployeeBegin.Text.Trim();
+        miCalEmployeeend.InnerHtml = txtEmployeeEnd.Text.Trim();
+        miCalEmployeeLeft.InnerHtml = txtEmployeeLeft.Text.Trim();
+        miCalEmployeeLeftMethod2.InnerHtml = txtEmployeeLeft.Text.Trim();
+        miCalAverage.InnerHtml = AverageNumber.ToString("0.00").Trim();
+        miDisAverage.InnerHtml = AverageNumber.ToString("0.00").Trim();
+        miDisAverageMethod2.InnerHtml = AverageNumber.ToString("0.00").Trim();
+        miCalTurnoverRatio.InnerHtml = TurnoverRatio.ToString("0.00").Trim();
+        miCalTurnoverRatioMethod2.InnerHtml = TurnoverRatio.ToString("0.00").Trim();
+    }
+
+    #endregion Display Calculation
 }

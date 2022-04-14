@@ -13,7 +13,7 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             SelectDurationMode();
-            
+
         }
 
     }
@@ -24,6 +24,7 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
     protected void btnCalculate_Click(object sender, EventArgs e)
     {
         OvertimePay();
+
     }
 
     #endregion Button : Calculate
@@ -47,6 +48,8 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
         Double regularPay = 0;
         Double overtimePay = 0;
         String strUnit = "";
+        String strPayUnit = "";
+        Double totalPay = 0;
         #endregion Local Variable
 
         #region Server Side Validation
@@ -89,29 +92,34 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
                 overtimeHours = Convert.ToDouble(txtTotalWorktime.Text.Trim()) - Convert.ToDouble(txtRegularWorktime.Text.Trim());
             }
 
-            if (ddlCalculationType.SelectedItem.ToString().Trim() == "Hour")
+            if (ddlCalculationType.SelectedValue.ToString().Trim() == "hour")
             {
                 strUnit = "hours";
+                strPayUnit = "day";
             }
-            if (ddlCalculationType.SelectedItem.ToString().Trim() == "Week")
+            if (ddlCalculationType.SelectedValue.ToString().Trim() == "week")
             {
                 strUnit = "weeks";
+                strPayUnit = "month";
             }
-            if (ddlCalculationType.SelectedItem.ToString().Trim() == "Day")
+            if (ddlCalculationType.SelectedValue.ToString().Trim() == "day")
             {
                 strUnit = "days";
+                strPayUnit = "week";
             }
             divAnswer.Visible = true;
             lblMessage.Visible = false;
             regularPay = Convert.ToDouble(txtRegularWorktime.Text.Trim()) * Convert.ToDouble(txtRegularPay.Text.Trim());
-            lblRegularPay.Text = "Regular Pay: " + regularPay.ToString().Trim() + ddlCurrency.SelectedItem.ToString().Trim();
+            lblRegularPay.Text = "Regular Pay: " + regularPay.ToString().Trim() + " " + ddlCurrency.SelectedValue.ToString().Trim() + "/" + strPayUnit;
 
-            lblOvertimeHours.Text = "Overtime " + char.ToUpperInvariant(strUnit[0]).ToString().Trim()+strUnit.Substring(1)+": " + overtimeHours.ToString().Trim() + strUnit;
-            lblRegularHours.Text = "Regular " + char.ToUpperInvariant(strUnit[0]).ToString().Trim()+strUnit.Substring(1)+ ":  " + txtRegularWorktime.Text.Trim() + strUnit;
-            
+            lblOvertimeHours.Text = "Overtime " + char.ToUpperInvariant(strUnit[0]).ToString().Trim() + strUnit.Substring(1) + ": " + overtimeHours.ToString().Trim() + " " + strUnit;
+            lblRegularHours.Text = "Regular " + char.ToUpperInvariant(strUnit[0]).ToString().Trim() + strUnit.Substring(1) + ":  " + txtRegularWorktime.Text.Trim() + " " + strUnit;
+
             overtimePay = Convert.ToDouble(overtimeHours) * Convert.ToDouble(txtMultiplier.Text.Trim()) * Convert.ToDouble(txtRegularPay.Text.Trim());
-            lblOvertimePay.Text = "Overtime Pay: "+ overtimePay.ToString().Trim() + ddlCurrency.SelectedItem.ToString().Trim();
-            lblTotalPay.Text = "Total Pay: "+ Convert.ToString(overtimePay + regularPay) + ddlCurrency.SelectedItem.ToString().Trim();
+            lblOvertimePay.Text = "Overtime Pay: " + overtimePay.ToString().Trim() + " " + ddlCurrency.SelectedValue.ToString().Trim() + "/" + strPayUnit;
+            totalPay = overtimePay + regularPay;
+            lblTotalPay.Text = "Total Pay: " + totalPay + " " + ddlCurrency.SelectedValue.ToString().Trim() + "/" + strPayUnit;
+            DisplayCalculation(strUnit, overtimeHours, overtimePay, regularPay, strPayUnit, totalPay);
             ClearControls();
         }
         else
@@ -128,22 +136,22 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
     protected void SelectDurationMode()
     {
         String strUnit = "";
-        if (ddlCalculationType.SelectedItem.ToString().Trim() == "Hour")
+        if (ddlCalculationType.SelectedValue.ToString().Trim() == "hour")
         {
             strUnit = "hours";
         }
-        if (ddlCalculationType.SelectedItem.ToString().Trim() == "Week")
+        if (ddlCalculationType.SelectedValue.ToString().Trim() == "week")
         {
             strUnit = "weeks";
         }
-        if (ddlCalculationType.SelectedItem.ToString().Trim() == "Day")
+        if (ddlCalculationType.SelectedValue.ToString().Trim() == "day")
         {
             strUnit = "days";
         }
-        lblRegularWorktime.Text = "Regular WorkTime in "+strUnit+": ";
-        lblTotalWorktime.Text = "Total WorkTime in "+strUnit+": ";
-        lblRegularPayPer.Text = "Regular Pay Per "+strUnit+": ";
-        rfvRegularPay.Text = "Enter a Pay Per "+strUnit+": ";
+        lblRegularWorktime.Text = "Regular WorkTime in " + strUnit + ": ";
+        lblTotalWorktime.Text = "Total WorkTime in " + strUnit + ": ";
+        lblRegularPayPer.Text = "Regular Pay Per " + strUnit + ": ";
+        rfvRegularPay.Text = "Enter a Pay Per " + strUnit + ": ";
         lblRegularWorktimeType.Text = strUnit;
         lblTotalWorktimeType.Text = strUnit;
     }
@@ -168,4 +176,31 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
         ClearAnswer();
     }
     #endregion ddlCalculationType_SelectedIndexChanged
+
+    #region Display Calculation
+
+    private void DisplayCalculation(String strUnit, Double overtimeHours, Double overtimePay, Double regularPay, String strPayUnit, Double totalPay)
+    {
+        miCalTotalWorktime.InnerHtml = txtTotalWorktime.Text.Trim();
+        miCalRegularWorktime.InnerHtml = txtRegularWorktime.Text.Trim();
+        miCalOvertime.InnerHtml = overtimeHours.ToString().Trim() + " " + char.ToUpperInvariant(strUnit[0]).ToString().Trim() + strUnit.Substring(1);
+        milblMode.InnerHtml = char.ToUpperInvariant(strPayUnit[0]).ToString().Trim() + strPayUnit.Substring(1);
+        miCalOvertimeMultiplier.InnerHtml = txtMultiplier.Text.Trim();
+        miCalRegularPay.InnerHtml = regularPay.ToString().Trim();
+        miCalOvertimePay.InnerHtml = overtimePay.ToString().Trim();
+        milblCurrency.InnerHtml = ddlCurrency.SelectedValue.ToString().Trim();
+        milblMode1.InnerHtml = strPayUnit;
+        milblRegularPay.InnerHtml = regularPay.ToString().Trim();
+        milblOvertimePay.InnerHtml = overtimePay.ToString().Trim();
+        miCalTotal.InnerHtml = totalPay.ToString().Trim();
+        milblCurrency1.InnerHtml = ddlCurrency.SelectedValue.ToString().Trim();
+        milblMode2.InnerHtml = strPayUnit;
+        milblMode3.InnerHtml = char.ToUpperInvariant(strUnit[0]).ToString().Trim() + strUnit.Substring(1);
+        milblRegularPayModeWise.InnerHtml = txtRegularPay.Text.Trim();
+        milblRegularWorktime.InnerHtml = txtRegularWorktime.Text.Trim();
+        miCalRegularPay1.InnerHtml = regularPay.ToString().Trim();
+        milblCurrency2.InnerHtml = ddlCurrency.SelectedValue.ToString().Trim();
+        milblMode4.InnerHtml = strPayUnit;
+    }
+    #endregion Display Calculation
 }
