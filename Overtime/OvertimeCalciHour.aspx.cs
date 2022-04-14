@@ -120,6 +120,7 @@ public partial class Overtime_OvertimeCalciHour : System.Web.UI.Page
             totalPay = overtimePay + regularPay;
             lblTotalPay.Text = "Total Pay: " + totalPay + " " + ddlCurrency.SelectedValue.ToString().Trim() + "/" + strPayUnit;
             DisplayCalculation(strUnit, overtimeHours, overtimePay, regularPay, strPayUnit, totalPay);
+            divMathCalculation.Visible = true;
             ClearControls();
         }
         else

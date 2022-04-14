@@ -159,7 +159,7 @@
                     <asp:Label runat="server" ID="lblOvertimeHours" CssClass="active" Font-Names="Bahnschrift SemiLight" Font-Size="Medium" ForeColor="Green" Font-Bold="True"></asp:Label>
                 </div>
             </div>
-            <div class="row">
+            <div runat="server" class="row" id="divMathCalculation" visible="false">
                 <hr />
                 <br />
                 <div class="col-md-12" id="divContent">
